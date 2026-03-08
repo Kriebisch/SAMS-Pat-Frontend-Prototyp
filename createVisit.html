@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="SAMS-Pat - Phänotypisierungswerkzeug für die Präzisionsmedizin.">
+    <title>SAMS-Pat</title>
+    <!-- CSS-Datei einbinden -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- jQuery einbinden - Diese Bibliothek wird benötigt um den Slider zu steuern. Ich hatte recherchiert und eigentlich sollte es kein Problem
+         mit dem Backendgeben. -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <!-- fontawesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    <!-- eigene CSS-Dateien -->
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/burger.css">
+    <link rel="stylesheet" href="css/inputForm.css">
+    <link rel="stylesheet" href="css/styleRadio.css">
+    <link rel="stylesheet" href="css/getStarted.css">
+    <link rel="stylesheet" href="css/createVisit.css">
+
+</head>
+
+<body>
+    <!-- Header -->
+    <div class="sticky-wrapper">
+        <header class="header">
+            <nav class="header-nav">
+                <div class="logo-container">
+                    <img src="image/sams_pat_logo.png" alt="Company Logo" class="main-logo">
+                </div>
+
+
+
+                <div class="nav-icon-wrapper">
+                    <div class="sidebar-wrapper-test">
+                        <label class="account-menu" tabindex="0">
+                            <input class="account-checkbox" type="checkbox" />
+                            <img src="image/account_box.png" class="account-icon" alt="account-icon">
+                        </label>
+
+                        <aside class="account-sidebar">
+                            <nav class="menu-content">
+                                <ul class="menu-list">
+                                    <li class="menu-item"><a class="menu-link" href="#">Profilansicht</a></li>
+                                    <li class="menu-item"><a class="menu-link" href="#">Einstellungen</a></li>
+                                    <li class="menu-item"><a class="menu-link" href="#">Konto löschen</a></li>
+                                    <li class="menu-item"><a class="menu-link" href="#">Phenopaket Exportieren</a></li>
+                                    <li class="menu-item"><a class="menu-link" href="#">Abmelden</a></li>
+                                </ul>
+                            </nav>
+                        </aside>
+                    </div>
+
+                    <div class="sidebar-wrapper-test">
+                        <label class="hamburger-menu">
+                            <input class="hamburger-checkbox" type="checkbox" />
+                        </label>
+                        <aside class="sidebar">
+                            <nav class="menu-content">
+                                <ul class="menu-list">
+                                    <li class="menu-item"><a class="menu-link" href="#">Anmelden</a></li>
+                                    <li class="menu-item"><a class="menu-link" href="#">Registrieren</a></li>
+                                    <li class="menu-item"><a class="menu-link" href="#">Dokumentation</a></li>
+                                    <li class="menu-item"><a class="menu-link" href="#">Tutorial</a></li>
+                                    <li class="menu-item"><a class="menu-link" href="#">FAQ</a></li>
+                                    <li class="menu-item"><a class="menu-link" href="#">Impressum</a></li>
+                                </ul>
+                            </nav>
+                        </aside>
+                    </div>
+                </div>
+            </nav>
+        </header>
+    </div>
+
+    <!-- Im Grunde das selbe Prinzip wie bei getStartet.html. In der Contentsection werden die einzelnen Schritte zum jeweiligen Status der Progressbar hinzugefügt. 
+         Unterschied hier ist der Inhalt der einzelnen Schritte.
+    -->
+
+
+    <!-- Main Inhalt -->
+    <main class="main-content">
+        <div class="get-started-container">
+            <!-- Progressbar Section -->
+            <div class="progress-section">
+                <div class="progress-container">
+                    <div class="progress" id="progress"></div>
+                    <div class="circle active"></div>
+                    <div class="circle"></div>
+                    <div class="circle"></div>
+                    <div class="circle"></div>
+                    <div class="circle"></div>
+                    <span class="progress-label active" for="progress">Einleitung</span>
+                    <span class="progress-label" for="progress">Symptomsuche</span>
+                    <span class="progress-label" for="progress">Symptom spezifizieren</span>
+                    <span class="progress-label" for="progress">Modifikator auswählen</span>
+                    <span class="progress-label" for="progress">Eintrag speichern</span>
+                </div>
+
+                <!-- Labels Container für vertikale ansicht-->
+                <div class="labels-container-vertical">
+                    <div class="vertical-circle-container">
+                        <div class="circle active"></div>
+                        <span class="progress-label-vertical active" for="progress">Einleitung</span>
+                    </div>
+                    <div class="vertical-circle-container">
+                        <div class="circle"></div>
+                        <span class="progress-label-vertical">Symptomsuche</span>
+                    </div>
+                    <div class="vertical-circle-container">
+                        <div class="circle"></div>
+                        <span class="progress-label-vertical">Symptom spezifizieren</span>
+                    </div>
+                    <div class="vertical-circle-container">
+                        <div class="circle"></div>
+                        <span class="progress-label-vertical">Modifikator auswählen</span>
+                    </div>
+                    <div class="vertical-circle-container">
+                        <div class="circle"></div>
+                        <span class="progress-label-vertical">Eintrag speichern</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step für die Begrüßung und Einleitung in den Prozess "Eintrag erstellen"-->
+
+            <!-- Content Section -->
+            <div class="content-section">
+                <div class="content step-1 active">
+                    <h2>Wie erstelle ich einen Eintrag</h2>
+
+                    <p>
+                        Beim Erstellen eines Eintrages tragen Sie bitte einfach einen Suchbegriff ein.
+                        Nach drei Buchstaben werden Ihnen bereits Suchergebnisse angezeigt.
+                        <br><br>
+                        Es kann nach spezifischen Symptomen oder Körperteilen gesucht werden, die diese betreffen.
+                        Als Beispiel werden alle bekannten Symptome, die die Kopfregion betreffen, angezeigt, wenn Sie
+                        "Kopf" als Suchbegriff eingeben. Das Wort "Kopf" muss hierbei nicht zwingend im Symptomnamen
+                        vorkommen.
+                        <br><br>
+                        Es ist auch möglich, Wörter zu kombinieren, wie etwa "Schmerzen im Knie".
+                        Dadurch werden die Suchergebnisse eingegrenzt. Zusätzlich kann ein Symptom an sich noch weiter
+                        spezifiziert werden. Da Kopfschmerzen nicht immer gleich Kopfschmerzen sind,
+                        haben Sie die Möglichkeit, eine genauere Beschreibung zu geben. Die Auswahl bietet dann an, die
+                        Art der
+                        Kopfschmerzen genauer zu bestimmen.
+                        <br><br>
+                        Symptome haben eine ihnen zugeordnete spezifische ID. Unter Umständen haben Sie von Ihrem Arzt
+                        eine Liste der
+                        Symptome erhalten, oder Ihnen ist die ID bekannt. Die Suche kann auch über die ID der Symptome
+                        erfolgen.
+                        <br><br>
+                        Wenn ein Symptom ausgewählt wurde, haben Sie noch die Möglichkeit, diesem Symptom spezielle
+                        Modifikatoren hinzuzufügen.
+                        Es ist nicht nur wichtig, die Symptome zu kennen. Der primäre Nutzen von SAMS-Pat für Patienten
+                        ergibt sich aus der Möglichkeit,
+                        auch die Entwicklung von Symptomen zu dokumentieren. Dabei kann es wichtig sein, seit wann und
+                        unter welchen Umständen die
+                        Symptome auftreten. Oder aber Sie möchten den Schweregrad, z. B. für Schmerzen, dokumentieren.
+                        <br><br>
+                        Sie haben die Möglichkeit, sich eine Checkliste von Symptomen zu erstellen, die Sie bei jedem
+                        Eintrag, den Sie erstellen, abarbeiten
+                        und bei Bedarf auch neue Symptome hinzufügen können. Dies erleichtert das Erstellen eines
+                        Eintrages.
+                        <br><br>
+                        Wenn Sie alle Symptome, die Sie betreffen, eingegeben haben, wird Ihnen eine Übersicht aller
+                        Symptome und deren Modifikatoren angezeigt.
+                        Nach dem Speichern werden Sie zur Verwaltungsoberfläche aller Einträge geleitet.
+                    </p>
+                    <button class="btn" id="next-content">Next</button>
+                </div>
+
+
+
+                <!-- Schritte zur Einrichtung Step2 -->
+                 <!-- hier ähnlich wie bei getStartet.html Diagnose-Suche. Unterschied hier ist, dass zum einen Dummydaten für die Suchergebnisse eingefügt sind
+                      zum anderen soll die Logik ein bisschen weiter gehen, wenn man sein Symptom spezifizieren will. 
+                 -->
+                <div class="content step-2">
+
+
+                    <div class="symptom-search">
+                        <h2>Symptomsuche</h2>
+                        <p>
+                            Bitte geben Sie ein Symptom oder einen Begriff ein, der das Problem beschreibt. Sie können
+                            auch
+                            nach ICD-Codes suchen, falls Ihnen ein Arztbrief vorliegt.
+                        </p>
+                        <br />
+
+                        <!-- Suchfeld -->
+                        <div class="search-container">
+                            <div class="input-wrapper">
+                                <div class="wrap-input">
+                                    <input type="text" placeholder="Symptom oder ID" class="input">
+                                    <span class="focus-input"></span>
+                                    <span class="icon-input">
+                                        <i class="fa fa-search"></i>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Ergebnisse-Tabelle -->
+                        
+                        <div class="createVisit-search-results">
+                            <header class="createVisit-table-header">
+                                <h3>Suchergebnisse</h3>
+                            </header>
+                            <table class="createVisit-searchresults-table">
+                                <thead>
+                                    <tr>
+                                        <th>Symptom</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <!-- Beispielergebnis -->
+                                    <tr class="createVisit-accordion">
+                                        <td>
+                                            Limitation of knee mobility
+                                            <button class="createVisit-action-btn createVisit-details-btn">
+                                                <i class="fas fa-info-circle fa-lg"></i> <!--Icon -->
+                                            </button>
+                                            <button class="createVisit-action-btn createVisit-select-btn"
+                                                data-step="4">Auswählen</button>
+
+                                        </td>
+                                    </tr>
+                                    <tr class="createVisit-accordion-content createVisit-hidden-row">
+                                        <td colspan="2">
+                                            <div class="createVisit-details-panel">
+                                                <p><strong>Symptom-ID:</strong> HP:0010501</p>
+                                                <p><strong>Beschreibung:</strong> An abnormal limitation of knee joint
+                                                    mobility.</p>
+                                                <p><strong>Hinweis:</strong> Dieses Symptom kann weiter spezifiziert
+                                                    werden.</p>
+                                                <p>Beispiele für Untergruppen:</p>
+                                                <ul>
+                                                    <li>Limited knee flexion</li>
+                                                    <li>Limited knee flexion/extension</li>
+                                                    <li>Limited knee extension</li>
+                                                </ul>
+                                                <button class="createVisit-action-btn createVisit-specify-btn"
+                                                    data-step="3">Symptom Spezifizieren</button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr class="createVisit-accordion">
+                                        <td>
+                                            Knee joint hypermobility
+                                            <button class="createVisit-action-btn createVisit-details-btn">
+                                                <i class="fas fa-info-circle fa-lg"></i>
+                                            </button>
+                                            <button class="createVisit-action-btn createVisit-select-btn"
+                                                data-step="4">Auswählen</button>
+                                        </td>
+                                    </tr>
+
+                                    <tr class="createVisit-accordion-content createVisit-hidden-row">
+                                        <td colspan="2">
+                                            <div class="createVisit-details-panel">
+                                                <p><strong>Symptom-ID:</strong> HP:0045086</p>
+                                                <p><strong>Beschreibung:</strong> The ability of the knee to move past
+                                                    its normal range of motion, (knee hyperextension is greater than 10
+                                                    degrees).</p>
+                                                </ul>
+                                            </div>
+                                        </td>
+                                    </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+
+
+
+
+                <!-- Diagnosefindung Step3 -->
+                <div class="content step-3">
+
+                    <h2>Symptom spezifizieren</h2>
+                    <p>Bitte geben Sie die relevanten Informationen ein, um eine Diagnose zu finden. Nutzen Sie das
+                        Suchfeld, um nach möglichen Diagnosen zu suchen.</p>
+
+                    <div class="search-container">
+                        <div class="input-wrapper">
+
+                            <div class="wrap-input">
+                                <input type="text" placeholder="Krankheit oder ICD-Code" class="input">
+                                <span class="focus-input"></span>
+                                <span class="icon-input">
+                                    <i class="fa fa-search"></i>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                   
+                    <button class="btn" id="next-content">Next</button>
+                </div>
+
+
+
+
+                <!-- Checkliste Step4 -->
+                <div class="content step-4">
+                    <h2>Modifikator auswählen</h2>
+                    <p>
+                        Under construction
+                    </p>
+                  
+                    <button class="btn" id="next-content">Next</button>
+                    
+                </div>
+
+
+
+                <!-- Tour Step5 -->
+                <div class="content step-5">
+                    <h2>Eintrag speichern</h2>
+                    <p>
+                        Under Construction
+
+                    </p>
+
+
+
+                    <button class="btn" id="next-content">Next</button>
+                </div>
+            </div>
+
+
+        </div>
+
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-column">
+                <nav class="footer-nav">
+                    <a href="#" class="footer-link" tabindex="0">Registrieren</a>
+                    <a href="#" class="footer-link" tabindex="0">Dokumentation</a>
+                    <a href="#" class="footer-link" tabindex="0">Vorschau / Tutorial</a>
+                    <a href="#" class="footer-link" tabindex="0">FAQ</a>
+                    <a href="#" class="footer-link" tabindex="0">Impressum Disclaimer</a>
+                </nav>
+            </div>
+            <div class="footer-column">
+                <div class="footer-logos">
+
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="script/getStarted.js"></script>
+    <script src="script/script.js"></script>
+    <script src="script/createVisit.js"></script>
+</body>
+
+</html>

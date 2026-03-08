@@ -1,0 +1,145 @@
+/* createVisit.css 
+
+   Hier habe ich eine neue CSS Datei erstellt um nicht in Konflickt und vor allem nicht durcheineander mit den Spezifikationen von getStartet.css zu kommen.
+   Bis jetzt regeln sie auch nur das Styling für die Tabellen der Suchergebnisse. 
+*/
+
+.createVisit-accordion {
+    max-width: 800px;
+    margin: auto;
+    font-family: Arial, sans-serif;
+}
+
+.createVisit-accordion .createVisit-contentBx {
+    position: relative;
+    margin: 10px 0;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    overflow: hidden; 
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.createVisit-accordion .createVisit-contentBx .createVisit-accordion-label {
+    position: relative;
+    padding: 15px;
+    background: #af3030;
+    color: #fff; 
+    cursor: pointer;
+    font-weight: bold;
+    user-select: none; 
+    transition: background-color 0.3s ease;
+}
+
+.createVisit-accordion .createVisit-contentBx .createVisit-accordion-label:hover {
+    background: #8a2525; 
+}
+
+.createVisit-accordion .createVisit-contentBx .createVisit-accordion-label::before {
+    content: '+';
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%);
+    font-size: 1.5em;
+    color: #fff; /* Einheitlich mit dem Text */
+}
+
+.createVisit-accordion .createVisit-contentBx.active .createVisit-accordion-label::before {
+    content: '-';
+}
+
+.createVisit-accordion .createVisit-contentBx .createVisit-accordion-content {
+    position: relative;
+    background: #fff;
+    color: #333;
+    padding: 0 15px;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s ease, padding 0.3s ease;
+}
+
+.createVisit-accordion .createVisit-contentBx.active .createVisit-accordion-content {
+    max-height: 300px; /* Flexibler als feste Höhe */
+    padding: 15px;
+}
+
+.createVisit-accordion .createVisit-contentBx.active {
+    border: 1px solid #af3030; /* Visuelle Hervorhebung */
+}
+
+.createVisit-details-panel {
+    font-size: 14px;
+}
+
+.createVisit-action-btn {
+    background-color: #007BFF;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-right: 5px;
+}
+
+.createVisit-action-btn:hover {
+    background-color: rgb(0, 55, 84);
+}
+
+.createVisit-details-panel ul {
+    list-style-type: none;
+    padding-left: 20px;
+}
+
+.createVisit-details-panel ul li {
+    margin-bottom: 5px;
+}
+
+.createVisit-specify-btn {
+    background-color: rgb(40, 167, 69);
+    color: rgb(255, 255, 255);
+}
+
+.createVisit-specify-btn:hover {
+    background-color: rgb(33, 136, 56);
+}
+
+
+.createVisit-details-btn {
+    background-color: rgb(40, 167, 69);
+    color: rgb(255, 255, 255);
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-right: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.createVisit-details-btn:hover {
+    background-color: rgb(33, 136, 56);
+}
+
+/* Standardmäßig versteckte Zeilen */
+.createVisit-hidden-row {
+    display: none; /* Unsichtbar zu Beginn */
+}
+
+/* Sichtbare Zeile (wird von der Funktion hinzugefügt) */
+.createVisit-hidden-row.show {
+    display: table-row; /* Zeigt die Zeile an */
+    transition: all 0.3s ease-in-out;
+}
+
+/* Optional: Animation oder Übergang */
+.createVisit-hidden-row {
+    transition: all 0.3s ease-in-out;
+}
+
+/* Formatierung searchresults*/
+
+
+
+.createVisit-searchresults-table {
+    border-spacing: 0 20px; /* Fügt 10px vertikalen Abstand zwischen den Zeilen hinzu */
+    border-collapse: separate; /* Muss gesetzt werden, damit border-spacing wirkt */
+}

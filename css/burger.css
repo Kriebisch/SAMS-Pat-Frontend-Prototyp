@@ -1,0 +1,385 @@
+*,
+*::after,
+*::before {
+    box-sizing: border-box;
+}
+
+/* Spezifikationen für das Hamburger Menu und das Account Menü */
+/* Variablen definieren für das Burgermenu. hier kommen wir dank css Variablen gänzlich ohne span-Emente oder PNGs bzw. SVGs aus */
+
+:root {
+    --bar-width: 50px;
+    --bar-height: 6px;
+    --hamburger-gap: 4px;
+    --foreground: #333;
+    --background: #fff;
+    --hamburger-margin: 8px;
+    --animation-timing: 300ms ease-in-out;
+    --hamburger-height: calc(var(--bar-height) * 3 + var(--hamburger-gap) * 2);
+    --sidebar-width: 20rem;
+    --burger-gradient: linear-gradient(245deg, rgb(0, 55, 84) 12.81%, rgba(0, 122, 186, 0.63) 82.66%);
+    --sidebar-gradient: linear-gradient(245deg, rgb(0, 55, 84) 12.81%, rgba(0, 122, 186, 0.63) 82.66%);
+    --burger-line-color: rgba(0, 55, 84, 0.63);
+    
+}
+
+.hamburger-menu {
+    
+    --x-width: calc(var(--hamburger-height) * 1.41421356237); /* Hier wird berechnet wie sich die Linien verhalten sollen wenn auf das Menu geklickt wird
+                                                                 damit die Linien die richtige Länge haben*/
+    background: transparent;
+    isolation: isolate;
+    display: flex;
+    flex-direction: column;
+    gap: var(--hamburger-gap);
+    width: max-content;
+    position: relative;
+    z-index: 2;
+    cursor: pointer;
+
+}
+
+.hamburger-menu:has(input:checked) {
+    --foreground: #fff;
+    --background: #333;
+}
+
+
+
+.hamburger-menu:has(input:focus-visible)::before,
+.hamburger-menu:has(input:focus-visible)::after,
+.hamburger-menu input:focus-visible {
+    
+    border: 1px solid var(--background);
+    box-shadow: 0 0 0 1px var(--foreground);
+}
+
+.hamburger-menu::before {
+    transform: translateZ(1px);
+}
+
+.hamburger-menu::after {
+    transform: translateZ(-1px);
+}
+
+.hamburger-menu::before,
+.hamburger-menu::after,
+.hamburger-menu input {
+    content: "";
+    width: var(--bar-width);
+    height: var(--bar-height);
+    background: rgb(0, 55, 84);
+    transform-origin: left center;
+    border-radius: 9999px;
+    transition: opacity var(--animation-timing), width var(--animation-timing),
+        rotate var(--animation-timing), translate var(--animation-timing),
+        background-color var(--animation-timing);
+    z-index: 2;
+
+}
+
+.hamburger-menu:has(input:checked)::before {
+    rotate: 45deg;
+    isolation: isolate;
+    backface-visibility: hidden;
+    background-blend-mode: screen;
+    mix-blend-mode: normal;
+    filter: brightness(1);
+    width: var(--x-width);
+    translate: 0 calc(var(--bar-height) / -2);
+    z-index: 100;
+
+}
+
+.hamburger-menu:has(input:checked)::after {
+    rotate: -45deg;
+    isolation: isolate;
+    backface-visibility: hidden;
+    background-blend-mode: screen;
+    mix-blend-mode: normal;
+    filter: brightness(1);
+    width: var(--x-width);
+    translate: 0 calc(var(--bar-height) / 2);
+    z-index: 3;
+}
+
+.hamburger-menu input {
+    appearance: none;
+    padding: 0;
+    margin: 0;
+    outline: none;
+    pointer-events: none;
+    inset: 0;
+    z-index: 1;
+    right: 0;
+    width: var(--bar-width);
+}
+
+.hamburger-menu input:checked {
+    opacity: 0;
+    width: 0;
+    z-index: 1;
+}
+
+.sidebar {
+    transition: transform var(--animation-timing);
+    transform: translateX(100%);
+    padding: 0.5rem 1rem;
+    box-sizing: border-box;
+    top: 0;
+    padding-top: calc(var(--hamburger-height) + var(--hamburger-margin) + 1rem);  /* Berechnung um festzulegen wie hoch die Sidebar sein soll */
+    background-color: rgba(112, 172, 192, 0.60);
+    color: var(--background);
+    width: var(--sidebar-width);
+    max-width: 20rem;
+    min-height: 100vh;
+    display: none;
+    right: 0;
+    position: fixed;
+    display: block;
+    backdrop-filter: blur(8px);
+    z-index: 1;
+
+}
+
+.hamburger-menu:has(input:checked)+.sidebar {
+    transform: translateX(0);
+    box-shadow: -10px 0 10px rgb(0, 0, 0, 0.1);
+}
+
+.content-width {
+    max-width: 20rem;
+}
+
+.sidebar-wrapper {
+    
+    display: flex;
+    flex-direction: row;
+    top: 0;
+    gap: 1rem;
+    width: auto;
+    justify-self: center;
+    align-items: center;
+    justify-content: flex-end;
+    width: 150px;
+    height: 36px;
+    justify-content: space-between 
+    
+}
+
+
+
+.hamburger-checkbox {
+    display: none;
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    width: auto;
+    justify-self: center;
+    align-items: center;
+    justify-content: flex-end;
+    color: rgba(0, 55, 84, 0.63);
+    background: rgb(0, 55, 84);
+    background-color: rgb(0, 55, 84);
+    z-index: 9999;
+}
+
+.menu-content {
+    margin-top: 35px;
+    opacity: 100%;
+    z-index: 2;
+ 
+
+}
+
+
+
+/* nav-elements */
+
+.menu-list {
+    width: 100%;
+    list-style: none;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    flex-direction: column;
+    padding: 0;
+    margin: 0;
+    border: none;
+    border-spacing: 0px;
+}
+
+.menu-item {
+    display: flex;
+    height: 40px;
+    list-style: none;
+    width: var(--sidebar-width);
+    margin: 0;
+    padding: 0;
+    z-index: 2;
+}
+
+.menu-item:hover {
+    background-color: #f0f0f0;
+}
+
+.menu-link {
+    display: block;
+    width: var(--sidebar-width);
+    height: 100%;
+    display: flex;
+    align-items: center;
+    padding: 0px 0px;
+    text-decoration: none;
+    color: rgb(0, 55, 84);
+    position: relative;
+    z-index: 3;
+}
+
+
+.menu-link {    
+    width: 100%;
+}
+
+.sidebar li {
+    width: 100%;
+}
+
+.sidebar a {
+    width: 100%;
+}
+
+
+/*Media Querie um auf mobile Geräten den Gesamten Bildschirm einzunehmen*/
+@media (max-width: 400px) {
+    .sidebar {
+        transition: transform var(--animation-timing);
+        transform: translateX(100%);    
+        box-sizing: border-box;
+        top: 0;
+        padding-top: calc(var(--hamburger-height) + var(--hamburger-margin) + 1rem);
+        background-color: rgba(112, 172, 192, 0.60);
+        color: var(--background);
+        width: 100%; 
+        max-width: none; 
+        min-height: 100vh;
+        position: fixed;
+        right: 0; 
+        backdrop-filter: blur(5px);
+        z-index: 1;
+    }
+}
+
+
+
+
+/*Account Menu*/
+
+/* Styling für das Account-Icon */
+.account-icon {
+    display: flex;
+    margin: 0;
+    cursor: pointer;
+    border: none;
+    width: 50px;
+    height: 36px;
+    position: relative;
+    z-index: 2;
+}
+
+/* Wrapper für Sidebar-Elemente */
+.sidebar-wrapper-test {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+    width: 50px;
+    height: 36px;
+    cursor: pointer;
+}
+
+/* Transition für die Sidebar */
+.account-sidebar {
+    transition: transform var(--animation-timing);
+    transform: translateY(-100%);
+    padding: 0.5rem 1rem;
+    padding: calc(var(--hamburger-height) + var(--hamburger-margin) + 1rem) 1rem;
+    box-sizing: border-box;
+    top: 0;
+    right: 0; 
+    background-color: rgba(112, 172, 192, 0.60);
+    color: var(--background);
+    width: 100%;
+    max-width: 20rem;
+    min-height: 100vh;
+    position: fixed;
+    display: block;
+    backdrop-filter: blur(5px);
+    z-index: 1;
+}
+
+@media (max-width: 400px) {
+    .account-sidebar {
+        transition: transform var(--animation-timing);
+        padding: 0.5rem 1rem;
+        box-sizing: border-box;
+        top: 0;
+        right: 0; /* Sidebar erscheint auf der rechten Seite */
+        padding-top: calc(var(--hamburger-height) + var(--hamburger-margin) + 1rem);
+        background-color: rgba(112, 172, 192, 0.60);
+        color: var(--background);
+        width: 100%; 
+        max-width: none;
+        min-height: 100vh;
+        position: fixed;
+        backdrop-filter: blur(5px);
+        z-index: 1;
+    }
+}
+
+
+
+/* Eingeblendete Sidebar von oben anstatt von rechts*/
+.account-menu:has(input:checked) + .account-sidebar {
+    transform: translateY(0); /* Endposition */
+    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
+}
+
+
+/* Checkbox spezifisch für das Account-Menü */
+.account-checkbox {
+    display: none;
+}
+
+/* Fokus-Stil für Account-Icon */
+.account-menu:has(.account-checkbox:focus-visible) .account-icon {
+    outline: 2px solid rgba(0, 55, 84, 0.7);
+}
+
+/* Entfernte Animationen von Hamburger-Styles */
+.account-menu::before,
+.account-menu::after,
+.account-menu input {
+    /* Entfernt alle Bar-Stile und Animationen */
+    content: none;
+    width: auto;
+    height: auto;
+    transform: none;
+    border-radius: 0;
+    transition: none;
+}
+
+/* Checkbox unter dem Account-Icon: keine Transformationen */
+.account-checkbox:checked {
+    opacity: 1; /* Keine spezielle Sichtbarkeits- oder Größenänderung */
+}
+
+.account-sidebar .menu-item {
+    padding-left: 1rem;
+}
+
+
+
+
+
+

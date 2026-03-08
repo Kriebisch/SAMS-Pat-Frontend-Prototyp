@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="SAMS-Pat - Phänotypisierungswerkzeug für die Präzisionsmedizin.">
+  <title>SAMS-Pat</title>
+
+  <!-- jQuery einbinden - Diese Bibliothek wird benötigt um den Slider zu steuern. Ich hatte recherchiert und eigentlich sollte es kein Problem
+         mit dem Backendgeben. -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+  <!-- CSS-Datei einbinden -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <!-- fontawesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/burger.css">
+  <link rel="stylesheet" href="css/inputForm.css">
+  <link rel="stylesheet" href="css/styleRadio.css">
+  <link rel="stylesheet" href="css/dashboardKopie.css">
+  
+</head>
+
+<body>
+  <!-- Header -->
+  <header class="header">
+    <nav class="header-nav">
+      <div class="logo-container">
+        <img src="image/sams_pat_logo.png" alt="Company Logo" class="main-logo">
+      </div>
+
+      <div class="nav-icon-wrapper">
+        <div class="sidebar-wrapper-test">
+          <label class="account-menu" tabindex="0">
+            <input class="account-checkbox" type="checkbox" />
+            <img src="image/account_box.png" class="account-icon" alt="account-icon">
+          </label>
+
+          <aside class="account-sidebar">
+            <nav class="menu-content">
+              <ul class="menu-list">
+                <li class="menu-item"><a class="menu-link" href="#">Profilansicht</a></li>
+                <li class="menu-item"><a class="menu-link" href="#">Einstellungen</a></li>
+                <li class="menu-item"><a class="menu-link" href="#">Konto löschen</a></li>
+                <li class="menu-item"><a class="menu-link" href="#">Phenopaket Exportieren</a></li>
+                <li class="menu-item"><a class="menu-link" href="#">Abmelden</a></li>
+              </ul>
+            </nav>
+          </aside>
+        </div>
+
+        <div class="sidebar-wrapper-test">
+          <label class="hamburger-menu">
+            <input class="hamburger-checkbox" type="checkbox" />
+          </label>
+          <aside class="sidebar">
+            <nav class="menu-content">
+              <ul class="menu-list">
+                <li class="menu-item"><a class="menu-link" href="#">Anmelden</a></li>
+                <li class="menu-item"><a class="menu-link" href="#">Registrieren</a></li>
+                <li class="menu-item"><a class="menu-link" href="#">Dokumentation</a></li>
+                <li class="menu-item"><a class="menu-link" href="#">Tutorial</a></li>
+                <li class="menu-item"><a class="menu-link" href="#">FAQ</a></li>
+                <li class="menu-item"><a class="menu-link" href="#">Impressum</a></li>
+              </ul>
+            </nav>
+          </aside>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Main Inhalt -->
+  <!-- Das Dashboard wird über ein Gridlayout realisiert. Wir haben eine Menuleiste mit Aktionsbuttons, darunter nur zwei zellen ein Kontainer 
+       Interaction links der die Elemente zur interaktion mit den Einträgen enthält wie eine Datumssuche oder aber einen neuen eintrag zu erstellen.
+       Zusätzlich lässt sich hier auch die Diagnose der Krankheit bearbeiten. 
+       Rechts die Primäre ansicht für die Einträge. Vorgesehen ist das in diesem Kontainer
+       auch alle anderen Inhalte geladen werden wie z.B. die Liste aller Einträge oder später auch der Zeitverlauf. Man kann es noch Konsistenter gestalten indem 
+       auch Eintrag bearbeiten dort aufgerufen wird
+       
+       Es gibt noch einige bugs die ich nicht mehr bereinigen konnte. -->  
+  <main class="main-content">
+    <div class="dashboard-container">
+      <!-- Menuleiste -->
+      <div class="menu">
+        <div class="menu-button-wrapper">
+          <button type="submit" class="menu-button-dashboard smal">Zeitverlauf</button>
+          <button type="submit" class="menu-button-dashboard smal">Liste Einträge</button>
+          <button type="submit" class="menu-button-dashboard smal">Neuer Eintrag</button>
+          <button type="submit" class="menu-button-dashboard">Einstellungen</button>
+          <button type="submit" class="menu-button-dashboard hilfe">Hilfe</button>
+        </div>
+      </div>
+      <div class="dashboard">
+        <!-- Interaction für die Bedienung des Dashboard-->
+        <div class="interaction">
+          <!-- Diagnose bearbeiten -->
+          <div class="diagnose">
+            <div class="diagnose-label">
+              Diagnose: <span class="diagnose-info">Unbekannt</span>
+            </div>
+            <div class="button-wrapper-bearbeiten">
+              <button type="submit" class="menu-button-dashboard diagnose">Diagnose Bearbeiten</button>
+            </div>
+          </div>
+
+          <!-- Datumssuche und Daykarussel -->
+          <div class="daykarussel">
+            <div class="last-entry-label">
+              <span class="label-standart">Eintrag suchen:</span>
+            </div>
+
+            <div class="input-wrapper">
+
+              <div class="wrap-input">
+
+                <input type="text" placeholder="tt.mm.jjjj" class="input date-input">
+                <span class="focus-input"></span>
+                <span class="icon-input">
+                  <i class="fa fa-calendar-alt"></i>
+                </span>
+              </div>
+            </div>
+            <div class="last-entry-label">
+              Ausgewältes Datum: <span id="last-entry-date">02.01.2025</span>
+            </div>
+
+
+
+
+
+            <!-- Daykarussel -->
+            <div class="carousel-container-mobile">
+              <button class="carousel-nav-mobile prev-mobile">&lt;</button>
+              <div class="carousel-days-mobile">
+                <div class="day-mobile" data-index="0"></div>
+                <div class="day-mobile" data-index="1"></div>
+                <div class="day-mobile active-mobile" data-index="2"></div>
+                <div class="day-mobile" data-index="3"></div>
+                <div class="day-mobile" data-index="4"></div>
+              </div>
+              <button class="carousel-nav-mobile next-mobile">&gt;</button>
+            </div>
+
+
+
+
+          </div>
+          <!-- Eintrag Optionen für das erstellen von Einträgen und kopieren des letzten Eintrags-->
+          <div class="eintrag-optionen">
+            <div class="last-entry-label">
+              Letzter Eintrag: <span id="last-entry-date">02.01.2025</span>
+            </div>
+            <div class="button-wrapper-eintrag">
+              <button type="submit" class="menu-button-dashboard letzterEintrag">Letzten Eintrag kopierne</button>
+              <button type="submit" class="menu-button-dashboard big">Zeitverlauf</button>
+              <button type="submit" class="menu-button-dashboard big">Liste Einträge</button>
+              <button type="submit" class="menu-button-dashboard big">Neuer Eintrag</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Main Content für das Dashboard hier werden ausgehend vom Datum aus der Datumssuche die Einträge geladen. Wie bei SAMS wird der letzte Eintrag 
+        automatisch geladen bzw. markiert. Die einzelnen Symptome zum Eintrag werden in einzelnen dropdownpanels angezeigt. Auch hier kommt wieder die Funktion 
+        wie in getStarted.html und createVisit.html. zum Einsatz. Die Schards werden in drei Div-Elemente aufgeteilt (Symptom, Modifikatoren, Verlauf). Dies hilft, dass die 
+        inhalte sich responsiv verhalten. Der Verlauf ist nur ein Platzhalter dieser kann überarbeitet werden, wenn sich hier auf ein Konzept geeinigt wurde.
+        Zuletzt hatten wir eine binäre Darstellung mit Pfeilen hoch und runter im Sinn.
+        -->
+        <div class="main-content-dashboard">
+          <h2>Eintrag vom 02.01.2025</h2>
+            <button class="flip-button7">
+              <div class="button-wrapper">
+                  <label class="button-label">Abnorme Lungenmorphologie </label>
+                  <div class="triangle"></div>
+              </div>
+          </button>
+
+          <!--Anfang eines Symptoms-->
+          <div class="panel-button7">
+            <div class="content-wrapper-symptom">
+              <div class="symptombeschreibung">
+                <h4>Symptombeschreibung:</h4>
+                <table>
+                    <tr>
+                        <td>Symptom:</td>
+                        <td>Abnorme Lungenmorphologie</td>
+                    </tr>
+                    <tr>
+                        <td>Synonym:</td>
+                        <td>Krankhaft geformte Lunge</td>
+                    </tr>
+                    <tr>
+                        <td>Symptom-ID:</td>
+                        <td><a>HP:0002088</a></td>
+                    </tr>
+                    <tr>
+                        <td>Status:</td>
+                        <td>vorhanden</td>
+                    </tr>
+                </table>
+            </div>
+            <div class="modifikatoren">
+                <h4>Modifikatoren:</h4>
+                <table>
+                    <tr>
+                        <td>Modifikator:</td>
+                        <td>Ausgelöst durch körperliches Trauma</td>
+                    </tr>
+                    <tr>
+                        <td>Modifikator:</td>
+                        <td>Ausllösung durch Augentrauma</td>
+                    </tr>
+                    <tr>
+                        <td>Schweregrad</td>
+                        <td>Schwer</td>
+                    </tr>
+                </table>
+            </div>
+              <div class="verlauf">
+                <h4>Symptombeschreibung:</h4>
+                <img class="verlauf-img" src="image/verlauf.png">
+              </div>
+            </div>
+            
+          </div>
+          <!--Ende eines Symptoms-->
+
+
+          <div class="devider"></div> <!-- regelt den Abstand zwischen den einzelnen shards, war für mich hier die einfachste 
+                                           Methode ohne mit padding oder margin zu arbeiten -->
+          
+
+
+            <button class="flip-button7">
+              <div class="button-wrapper">
+                  <label class="button-label">Abnorme Lungenmorphologie </label>
+                  <div class="triangle"></div>
+              </div>
+          </button>
+          <div class="panel-button7">
+            <div class="content-wrapper-symptom">
+              <div class="symptombeschreibung">
+                <h4>Symptombeschreibung:</h4>
+                <table>
+                    <tr>
+                        <td>Symptom:</td>
+                        <td>Abnorme Lungenmorphologie</td>
+                    </tr>
+                    <tr>
+                        <td>Synonym:</td>
+                        <td>Krankhaft geformte Lunge</td>
+                    </tr>
+                    <tr>
+                        <td>Symptom-ID:</td>
+                        <td><a>HP:0002088</a></td>
+                    </tr>
+                    <tr>
+                        <td>Status:</td>
+                        <td><span class="nicht">nicht </span>vorhanden</td>
+                    </tr>
+                </table>
+            </div>
+            <div class="modifikatoren">
+                <h4>Modifikatoren:</h4>
+                <table>
+                    <tr>
+                        <td>Modifikator:</td>
+                        <td>Ausgelöst durch körperliches Trauma</td>
+                    </tr>
+                    <tr>
+                        <td>Modifikator:</td>
+                        <td>Ausllösung durch Augentrauma</td>
+                    </tr>
+                    <tr>
+                        <td>Schweregrad</td>
+                        <td>Schwer</td>
+                    </tr>
+                </table>
+            </div>
+              <div class="verlauf">
+                <h4>Symptombeschreibung:</h4>
+                <img class="verlauf-img" src="image/verlauf.png">
+              </div>
+            </div>
+            
+          </div>
+          <div class="devider"></div>
+          
+          
+            <button class="flip-button7">
+              <div class="button-wrapper">
+                
+                  <label class="button-label">Abnorme Lungenmorphologie </label>
+                  <div class="triangle"></div>
+              </div>
+          </button>
+          <div class="panel-button7">
+            <div class="content-wrapper-symptom">
+              <div class="symptombeschreibung">
+                <h4>Symptombeschreibung:</h4>
+                <table>
+                    <tr>
+                        <td>Symptom:</td>
+                        <td>Abnorme Lungenmorphologie</td>
+                    </tr>
+                    <tr>
+                        <td>Synonym:</td>
+                        <td>Krankhaft geformte Lunge</td>
+                    </tr>
+                    <tr>
+                        <td>Symptom-ID:</td>
+                        <td><a>HP:0002088</a></td>
+                    </tr>
+                    <tr>
+                        <td>Status:</td>
+                        <td>vorhanden</td>
+                    </tr>
+                </table>
+            </div>
+            <div class="modifikatoren">
+                <h4>Modifikatoren:</h4>
+                <table>
+                    <tr>
+                        <td>Modifikator:</td>
+                        <td>Ausgelöst durch körperliches Trauma</td>
+                    </tr>
+                    <tr>
+                        <td>Modifikator:</td>
+                        <td>Ausllösung durch Augentrauma</td>
+                    </tr>
+                    <tr>
+                        <td>Schweregrad</td>
+                        <td>Schwer</td>
+                    </tr>
+                </table>
+            </div>
+              <div class="verlauf">
+                <h4>Symptombeschreibung:</h4>
+                <img class="verlauf-img" src="image/verlauf.png">
+              </div>
+            </div>
+            
+          </div>
+
+
+        </div>
+        </div>
+
+        
+
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-column">
+        <nav class="footer-nav">
+          <a href="#" class="footer-link" tabindex="0">Registrieren</a>
+          <a href="#" class="footer-link" tabindex="0">Dokumentation</a>
+          <a href="#" class="footer-link" tabindex="0">Vorschau / Tutorial</a>
+          <a href="#" class="footer-link" tabindex="0">FAQ</a>
+          <a href="#" class="footer-link" tabindex="0">Impressum Disclaimer</a>
+        </nav>
+      </div>
+      <div class="footer-column">
+        
+    </div>
+  </footer>
+
+  <!-- JavaScript -->
+  <script src="script/script.js"></script>
+  <script src="script/dashboard.js"></script>
+  <script src="script/dateKopie.js"></script>
+</body>
+
+</html>

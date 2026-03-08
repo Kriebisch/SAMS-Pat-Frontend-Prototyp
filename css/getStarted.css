@@ -1,0 +1,562 @@
+/* Root Variables */
+:root {
+    --line-border-fill: rgb(0, 55, 84);
+    --line-border-empty: rgb(224, 224, 224);
+    --text-color: rgb(0, 55, 84);
+    --bg-color: rgb(246, 247, 251);
+}
+
+
+/* die getStartet.css dient auch als Vorlage für das design der createVisit */
+
+.get-started-container {
+    display: grid;
+    background-color: rgb(255, 255, 255);
+    grid-template-areas:
+        "progress"
+        "content";
+    grid-template-columns: 1fr;
+    gap: 20px;
+    padding: 20px;
+    margin: auto;
+    width: fit-content;
+    height: 100%;
+    width: 90%;
+    margin: 0 auto;
+
+}
+
+/* Styling für den Progress-Container welcher die Kreise und die Labels enthaltet*/
+
+
+.progress-section {
+    grid-area: progress;
+    width: fit-content;
+    min-width: 350px;
+    height: 100%;
+    min-height: 0;
+    /*overflow: auto;*/
+}
+
+.progress-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    position: relative;
+    width: 100px;
+    height: auto;
+    min-height: 0;
+}
+
+.progress-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    height: 100%;
+    width: 4px;
+    background-color: var(--line-border-empty);
+    transform: translateX(-50%);
+    z-index: -1;
+}
+
+.progress {
+    background-color: var(--line-border-fill);
+    position: absolute;
+    top: 0;
+    left: 50%;
+    height: 0%;
+    width: 4px;
+    transform: translateX(-50%);
+    transition: height 0.4s ease;
+    z-index: -1;
+}
+
+.circle {
+    background-color: rgb(255, 255, 255);
+    color: rgb(153, 153, 153);
+    border: 3px solid var(--line-border-empty);
+    border-radius: 50%;
+    height: 10px;
+    width: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+    transition: 0.4s ease;
+}
+
+.circle.active {
+    border-color: var(--line-border-fill);
+    color: var(--line-border-fill);
+    background-color: var(--line-border-fill);
+}
+
+.progress-label {
+    display: none;
+    font-size: 16px;
+    color: var(--text-color);
+    margin-top: 10px;
+    margin: 10px;
+    font-weight: bold;
+    font-size: 16px;
+    margin-left: 15px;
+}
+
+.progress-label.active {
+    display: block;
+    font-size: 16px;
+    color: var(--text-color);
+    margin-top: 10px;
+    margin: 10px;
+    font-weight: bold;
+    font-size: 16px;
+    margin-right: 5px;
+}
+
+
+
+/* Progress-label-vertical */
+
+.progress-label-vertical {
+    display: none;
+}
+
+.progress-label-vertical{
+    color: rgb(0, 55, 84, 0.6);
+}
+
+.progress-label-vertical.active{
+    color: rgb(0, 55, 84);
+}
+
+
+
+/* Content Section */
+
+.content-section {
+    grid-area: content;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    height: 100%;
+    min-height: 0;
+
+}
+
+
+
+.content {
+    display: none;
+    max-width: 600px;
+    height: 100%;
+    max-height: fit-content;
+    text-align: left;
+    /*overflow: auto;*/
+
+}
+
+.content.active {
+    display: block;
+    max-width: 600px;
+    text-align: left;
+}
+
+.btn {
+    
+    margin: 20px 0;
+    padding: 5px 20px;
+    background-color: var(--line-border-fill);
+    color: #fff;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+    
+}
+
+#upload-btn {
+    display: flex;
+    justify-content: center;
+    justify-items: center;
+    align-items: center;
+    height: 28px;
+    background-color: var(--line-border-fill);
+    color: #fff;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+}
+
+
+.upload-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 200px;
+    min-width: 200px;
+    
+    
+}
+
+.checklist-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 300px;
+    min-width: 220px;
+    border: 2px solid rgb(0, 55, 84);
+    
+}
+
+.checklist-img-container{
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+min-height: 50px;
+min-width: 50px;
+
+}
+
+.btn:disabled {
+    background-color: var(--line-border-empty);
+    cursor: not-allowed;
+}
+
+.diagnose-img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+
+/* hier nur eine kleine Media um den get-started-container auf 100% des VP zu bringen*/
+@media (max-width: 861px) {
+    .get-started-container {
+        width: 100%;
+        
+    }
+}
+
+
+/* Breakpoint für das verschieben der Progressbar in die horizontale Ansicht*/
+@media (min-width: 768px) {
+    .get-started-container {
+        grid-template-areas: "progress content";
+        grid-template-columns: 1fr 3fr;
+        gap: 40px;
+    }
+
+    .progress-section {
+        justify-content: flex-end;
+    }
+
+
+    /* Progress-label-vertical deaktiviert den horizontalen Container 
+    und zeigt den vertikalen Container an*/
+    .progress-container {
+        display: none;
+        align-items: flex-end;
+    }
+
+    .progress-label-vertical {
+        display: block;
+        margin-bottom: 18px;
+        font-size: 20px;
+    }
+}
+
+.vertical-circle-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 20px;
+    padding: 10px;
+}
+
+.vertical-circle-container .circle {
+    width: 20px;
+    height: 20px;
+}
+
+
+
+/* auch schriftgröße passe ich früh an so dass die elemente mehr platz zum Schrumpfen haben*/
+@media (max-width: 990px) {
+
+    .progress-section {
+
+        min-width: 300px;
+
+    }
+
+
+    .progress-label-vertical {
+        font-size: 16px;
+
+    }
+
+}
+
+/* Media Queries für den Umschaltungsprozess*/
+@media (max-width: 768px) {
+
+    .get-started-container {
+        width: 100%;
+        font-size: 14px;
+    }
+
+    .input::placeholder {
+        font-size: 14px;
+    }
+
+    .input {
+        height: 40px;
+        max-width: 200px;
+    }
+
+    .progress-section {
+        justify-content: center;
+        align-items: center;
+    }
+
+    .progress-container {
+        flex-direction: row;
+        width: 100%;
+    }
+
+    .progress-container::before {
+        top: 50%;
+        left: 0;
+        height: 4px;
+        width: 100%;
+        transform: translateY(-50%);
+    }
+
+    .progress {
+        top: 50%;
+        left: 0;
+        width: 0%;
+        height: 4px;
+        transform: translateY(-50%);
+    }
+
+    .circle {
+        margin-right: 20px;
+        margin-bottom: 0;
+    }
+
+    .progress-label-vertical {
+        display: none;
+
+    }
+
+    .labels-container-vertical {
+        display: none;
+    }
+}
+
+
+/*Styling für searchresult container*/
+
+/* Grundlegendes Styling für Tabelle und Buttons */
+.search-results {
+    margin: 20px auto;
+    max-width: 800px;
+    font-family: Arial, sans-serif;
+}
+
+.table-header h2 {
+    text-align: center;
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.searchresults-table {
+    width: 100%;
+    border-collapse: collapse;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.searchresults-table th,
+.searchresults-table td {
+    text-align: left;
+    padding: 12px 15px;
+    border: 1px solid rgb(221, 221, 221);
+}
+
+.searchresults-table thead th {
+    background-color: rgb(244, 244, 244);
+    font-weight: bold;
+    color: rgb(68, 68, 68);
+}
+
+.searchresults-table tbody tr:nth-child(even) {
+    background-color: rgb(249, 249, 249);
+}
+
+
+
+.action-btn {
+    display: inline-block;
+    padding: 8px 12px;
+    margin: 0 5px;
+    font-size: 0.9rem;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.details-btn {
+    background-color: rgb(0,55,84);
+    color: white;
+}
+
+.details-btn:hover {
+    background-color: rgb(0,55,84,0.6);
+}
+
+.select-btn {
+    background-color: rgb(46, 204, 113);
+    color: white;
+}
+
+.select-btn:hover {
+    background-color: rgb(39, 174, 96);
+}
+
+/* Stil für ausgewählte Zeile */
+.selected {
+    background-color: rgb(0, 55, 84,0.4);
+    font-weight: bold;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*Styling für die Tourcards*/
+
+.tour-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 125px);
+    grid-template-rows: 1fr 1fr;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+}
+
+.card-header {
+    justify-content: center;
+    align-items: center;
+    font-size: 14px;
+    color: white;   
+}
+
+
+.card {
+    
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(0, 55, 84);
+    height: 125px;
+    width: 125px;
+    padding: 10px;
+    border-radius: 10px;
+    border-radius: 20px;
+    transition: all 0.5s ease-in-out;
+}
+
+.card:hover {
+    background-color: rgb(0, 55, 84, 0.8);
+    transform: scale(1.1);
+    transition: all 0.5s ease-in-out;
+    box-shadow: 0 10px 40px 0 rgba(0, 0, 0, 0.11), 0px 20px 40px rgba(194, 22, 22, 0.5);
+}
+
+
+@media (max-width: 430px) {
+    .progress-label.active {
+        font-size: 12px;
+        font-weight: bolder;
+    }
+
+    .diagnose-img {
+        width: 200px;
+        height: 100px;
+    }
+
+}
+
+
+
+
+
+
+
+
+/* Allgemeiner Button-Stile */
+.action-btn {
+    background-color: rgb(0, 123, 255);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 15px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-right: 10px;
+}
+
+.action-btn:hover {
+    background-color: rgb(0, 86, 179);
+}
+
+/* Details-Panel */
+.details-panel td {
+    background-color: rgb(248, 249, 250);
+    border-top: 1px solid rgb(222, 226, 230);
+    padding: 15px;
+    font-size: 14px;
+    display: none; /* Standardmäßig ausgeblendet */
+}
+
+.details-content h4 {
+    margin-bottom: 10px;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.details-content p {
+    margin: 0;
+    font-size: 14px;
+    line-height: 1.5;
+    color: rgb(51, 51, 51);
+}
+
+/* Ausgewählte Krankheit */
+.selected {
+    background-color: rgb(209, 236, 241);
+    color: rgb(12, 84, 96);
+    transition: background-color 0.3s ease;
+}
+

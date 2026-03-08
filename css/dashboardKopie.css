@@ -1,0 +1,931 @@
+/* Dashboard Container der im Main-Bereich angezeigt wird.*/
+.dashboard-container {
+  min-height: 100%;
+  width: 100%;
+  display: grid;
+  overflow-x: hidden;
+  grid-template-rows: 60px auto;
+  grid-template-areas:
+    "menu"
+    "dashboard";
+
+  overflow: hidden;
+}
+
+
+
+/* Menu oberhalb des Dashboard*/
+.menu {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  width: 100%;
+  color: rgb(255, 255, 255);
+  padding: 10px;
+  gap: 10px;
+}
+
+.menu-button-wrapper {
+  width: 40%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 10px;
+  margin-left: auto;
+}
+
+.menu-button-wrapper button:last-child {
+  margin-left: 30px;
+  width: 100px;
+}
+
+.menu-button-dashboard {
+  min-width: 150px;
+  height: 36px;
+  margin: 0 auto;
+  background-color: rgb(0, 55, 84);
+  color: rgb(255, 255, 255);
+  border-radius: 20px;
+  font-size: 16px;
+  cursor: pointer;
+  border: none;
+  transition: transform 0.2s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.menu-button-wrapper button:active {
+  transform: scale(0.95);
+  /* Leicht verkleinern */
+  background-color: rgb(255, 255, 255);
+  /* Etwas dunklerer Hintergrund */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2), 0 1px 2px rgba(0, 0, 0, 0.3);
+  /* Schatten wird beim Klicken kleiner */
+}
+
+.menu-button-dashboard:hover {
+  background-color: rgba(0, 55, 84, 0.6);
+  box-shadow: rgb(0, 55, 84) 0px 0px 0px 10px extend;
+}
+
+
+
+/* kontainer für interaktionsbar und Contentbereich*/
+
+.dashboard {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  grid-template-rows: 1fr;
+  grid-template-areas:
+    "interaction main-content-dashboard";
+  position: fit-content;
+  color: rgb(0, 55, 84);
+
+
+  border: #000 1px solid;
+}
+
+/* Kontainer links neben dem Hauptbereich*/
+
+.interaction {
+  grid-area: interaction;
+  width: 100%;
+  min-width: 100px;
+  height: 600px;
+
+  padding-top: 0;
+  display: grid;
+  align-self: start;
+  justify-self: start;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr 2fr 2fr;
+  color: rgb(255, 255, 255);
+  border: rgb(0, 0, 0) 1px solid;
+  gap: 5px;
+}
+
+.diagnose {
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  justify-content: left;
+  width: 100%;
+  height: 200px;
+  background-color: rgb(255, 255, 255);
+  color: rgb(0, 55, 84);
+  padding: 10px;
+  gap: 80px;
+  border-radius: 10px;
+  border: 1px solid #000000;
+
+}
+
+.diagnose-info {
+  font-size: 16px;
+  color: rgb(0, 55, 84);
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+
+/* Styling für das Daykarussel*/
+.daykarussel {
+
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  gap: 10px;
+  border: 1px solid rgb(0, 0, 0);
+  border-radius: 10px;
+
+}
+
+
+
+
+.last-entry-label {
+  font-size: 16px;
+  color: rgb(0, 64, 128);
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+
+
+.carousel-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 200px;
+  min-width: 100px;
+  height: 55px;
+  overflow: hidden;
+  position: relative;
+  margin: 0 auto;
+
+}
+
+.carousel-nav {
+  width: 36px;
+  height: 36px;
+  background-color: rgb(0, 64, 128);
+  color: white;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  max-width: 200px;
+  font-size: 20px;
+  border-radius: 10px;
+}
+
+.carousel-days {
+  display: flex;
+
+  overflow-x: hidden;
+  width: fit-content;
+  margin: 0 auto;
+  scroll-behavior: smooth;
+  position: relative;
+  z-index: 1;
+}
+
+.day {
+
+  min-width: 36px;
+  min-height: 36px;
+  background-color: rgb(240, 240, 240);
+  display: flex;
+  font-size: 16px;
+  font-weight: bold;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgb(204, 204, 204);
+  cursor: pointer;
+  color: rgb(0, 55, 84) !important;
+  z-index: 1000;
+  border-radius: 5px;
+  border: rgb(0, 55, 84) 1px solid;
+}
+
+.day.active {
+  background-color: rgb(0, 64, 128);
+  color: white !important;
+  font-weight: bold;
+}
+
+.carousel-container-mobile {
+  display: flex;
+  max-width: 300px;
+  min-width: 100px;
+  height: 50px;
+  overflow: hidden;
+  position: relative;
+  margin: 0 auto;
+  align-items: left;
+  justify-content: left;
+}
+
+.carousel-nav-mobile {
+  width: 36px;
+  height: 36px;
+  background-color: rgb(0, 64, 128);
+  color: white;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.day-mobile {
+  width: 36px;
+  height: 36px;
+  background-color: rgb(240, 240, 240);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgb(204, 204, 204);
+  font-size: 16px;
+  font-weight: normal;
+  color: rgb(0, 55, 84) !important;
+  border-radius: 10px;
+}
+
+.day-mobile.active-mobile {
+  background-color: rgb(0, 55, 84);
+  color: white !important;
+  font-weight: bold;
+  border-radius: 10px;
+}
+
+
+
+/* Kontainer für die Eintragsoptionen*/
+
+.eintrag-optionen {
+
+  width: 100%;
+  height: 100%;
+  background-color: rgb(255, 255, 255);
+  color: rgb(255, 255, 255);
+  padding: 10px;
+  gap: 10px;
+  border-radius: 10px;
+  border: 1px solid rgb(0, 0, 0);
+
+}
+
+
+
+/* Kontainer für die Einträge*/
+.main-content-dashboard {
+  grid-area: main-content-dashboard;
+  width: 100%;
+  height: fit-content;
+  background-color: rgb(255, 255, 255);
+  color: rgb(0, 55, 84);
+  padding: 10px;
+  align-self: start;
+  justify-self: start;
+
+  box-sizing: border-box;
+}
+
+
+
+.menu-button-dashboard.letzterEintrag {
+  display: flex;
+}
+
+.button-wrapper-eintrag {
+  display: flex;
+  flex-direction: column;
+  align-content: left;
+  justify-content: left;
+  width: 120px;
+  height: auto;
+  padding: 10px;
+  gap: 10px;
+}
+
+.menu-button-dashboard.big {
+  display: none;
+}
+
+
+
+
+
+
+/* Desktop-Version  */
+.last-entry-label {
+  font-size: 16px;
+  color: rgb(0, 64, 128);
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.carousel-nav-mobile {
+  width: 36px;
+  height: 36px;
+  background-color: rgb(0, 64, 128);
+  color: white;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 20px;
+  border-radius: 10px;
+  max-width: 200px;
+}
+
+.carousel-days-mobile {
+  width: 100px;
+  height: 26px;
+  display: flex;
+  gap: 5px;
+  justify-content: center;
+  flex: 1;
+  border-radius: 10px;
+}
+
+.day-mobile {
+  width: 36px;
+  height: 36px;
+  background-color: rgb(240, 240, 240);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgb(204, 204, 204);
+  font-size: 16px;
+  font-weight: normal;
+  color: rgb(0, 55, 84) !important;
+}
+
+.day-mobile.active-mobile {
+  background-color: rgb(0, 55, 84);
+  color: white !important;
+  font-weight: bold;
+}
+
+
+
+/* Input datum - hier wollte ich meine Inputfelder bearbeiten damit mehr platz ist ohne die Animation des Icons zu verlieren
+   es ist schon besser aber nicht perfekt zudem ist die Animation des Icons jetzt nicht mehr so schön
+*/
+
+.wrap-input {
+
+  margin: 20px 0px;
+  width: 100%;
+  max-width: 400px;
+  position: relative;
+  background: rgb(230, 230, 230);
+  border-radius: 25px;
+  display: flex;
+  align-items: center;
+
+}
+
+.input {
+  flex: 1;
+  outline: none;
+  border: none;
+  height: 38px;
+  padding: 0 40px 0 60px;
+  font-family: sans-serif;
+  font-size: 18px;
+  background: rgb(230, 230, 230);
+  border-radius: inherit;
+}
+
+.focus-input {
+  position: absolute;
+  display: block;
+  border-radius: inherit;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: -1;
+  height: 100%;
+  box-shadow: 0px 0px 0px 0px;
+  color: rgb(0, 55, 84);
+}
+
+input:focus+.focus-input {
+  animation: anim-shadow 0.5s ease-in-out forwards;
+}
+
+@keyframes anim-shadow {
+  to {
+    box-shadow: 0px 0px 15px 5px;
+    opacity: 0;
+  }
+}
+
+.icon-input {
+  position: absolute;
+  left: 5px;
+  transition: transform 0.4s ease, color 0.4s ease;
+  /* Bewegung und Farbe animieren */
+  color: rgb(102, 102, 102);
+}
+
+/*wir wechseln hier von einer Veränderung des Paddings zu einer Bewegung des Icons mittels transition leider funktioniert dann der ease-effekt nicht mehr*/
+.input:focus+.icon-input {
+
+  transform: translateX(-10px);
+  /* Nur visuelle Bewegung des Icons */
+  color: rgb(0, 55, 84);
+  /* Farbe ändern */
+}
+
+.date-input::-webkit-calendar-picker-indicator {
+  display: none;
+  /* Standard-Kalender-Icon ausblenden */
+}
+
+
+
+/* Media Querys */
+@media (max-width: 900px) {
+  .dashboard {
+    grid-template-areas:
+      "interaction"
+      "main-content-dashboard";
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto;
+    gap: 10px;
+    align-items: center;
+    height: fit-content;
+  }
+
+  .interaction {
+    grid-area: interaction;
+    width: 100%;
+    height: 230px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 10px;
+    border: 1px solid rgb(0, 0, 0);
+    padding: 10px;
+    background-color: rgb(255, 255, 255);
+  }
+
+  .daykarussel {
+
+    width: 272px;
+    height: auto;
+    padding: 10px;
+    border: 1px solid #000;
+
+  }
+
+  .main-content-dashboard {
+    grid-area: main-content-dashboard;
+    width: 100%;
+    align-self: top;
+    height: auto;
+    padding: 10px;
+    border: 1px solid rgb(0, 0, 0);
+    background-color: rgb(255, 255, 255);
+  }
+
+  input::placeholder {
+    z-index: 1000;
+  }
+
+  .input-wrapper {
+    position: relative;
+    z-index: 1;
+  }
+
+
+}
+
+
+
+
+@media (max-width: 590px) {
+  .dashboard {
+    grid-template-areas:
+      "interaction"
+      "main-content-dashboard";
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto;
+    gap: 10px;
+    align-items: center;
+    height: fit-content;
+
+  }
+
+  .button-wrapper-eintrag {
+    display: flex;
+    flex-direction: row;
+    align-content: left;
+    justify-content: left;
+    width: 120px;
+    height: auto;
+    padding: 10px;
+    gap: 10px;
+  }
+
+
+  .menu-button-wrapper {
+    width: 100%;
+    gap: 10px;
+  }
+
+  .diagnose {
+    height: fit-content;
+  }
+
+
+
+  .menu .menu-button-dashboard.smal {
+    display: none;
+  }
+
+  .menu .menu-button-dashboard.hilfe {
+    background-color: rgb(40, 167, 69) !important;
+  }
+
+  .interaction {
+    grid-area: interaction;
+    width: 100%;
+    height: auto;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(3, auto);
+    gap: 10px;
+    border: 1px solid rgb(0, 0, 0);
+    padding: 10px;
+    background-color: rgb(255, 255, 255);
+  }
+
+  .daykarussel {
+
+    width: 100%;
+    height: auto;
+    padding: 10px;
+    border: 1px solid #000;
+
+  }
+
+  .main-content-dashboard {
+    grid-area: main-content-dashboard;
+    width: 100%;
+    position: fit-content;
+    height: auto;
+    padding: 10px;
+    border: 1px solid rgb(0, 0, 0);
+    background-color: rgb(255, 255, 255);
+  }
+
+  input::placeholder {
+    z-index: 1000;
+  }
+
+  .input-wrapper {
+    position: relative;
+    z-index: 1;
+  }
+
+}
+
+
+.button-wrapper-bearbeiten {
+  display: flex;
+  flex-direction: row;
+  align-content: left;
+  justify-content: left;
+  width: fit-content;
+  height: 40px;
+
+  gap: 10px;
+}
+
+.menu-button-dashboard.diagnose {
+  display: flex;
+  justify-self: left;
+  align-items: center;
+  width: fit-content;
+  height: 36px;
+  margin: 0 auto;
+  background-color: rgb(0, 55, 84);
+  color: #fff;
+  border-radius: 20px;
+  font-size: 14px;
+  cursor: pointer;
+  border: none;
+  transition: transform 0.2s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.2);
+
+}
+
+
+
+.menu-button-dashboard.diagnose:hover {
+  background-color: rgba(0, 55, 84, 0.6);
+  box-shadow: rgb(0, 55, 84) 0px 0px 0px 10px extend;
+}
+
+.menu-button-dashboard.diagnose:active {
+  transform: scale(0.95);
+  background-color: #2c81c2;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2), 0 1px 2px rgba(0, 0, 0, 0.3);
+
+}
+
+
+
+
+
+
+
+
+@media (max-width: 768px) {
+  input {
+    width: 90%; /* Reduziert die Breite auf kleineren Bildschirmen */
+    
+    padding: 5px; /* Weniger Innenabstand */
+    
+  }
+
+  input::placeholder {
+    font-size: 16px; /* Kleinere Schriftgröße */
+    
+  }
+}
+
+
+/*Mediaquery für Menubuttons - hier hatte ich angefangen die Buttons anzupassen wenn der Bildschirm kleiner wird. da sie sonst zu groß wären.*/
+
+@media (max-width: 900px) {
+
+  .menu-button-wrapper {
+    width: 40%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 10px;
+    margin-left: auto;
+  }
+
+  .menu-button-wrapper button:last-child {
+    margin-left: 30px;
+    width: 100px;
+  }
+
+  .menu-button-dashboard {
+    min-width: 100px;
+    height: 28px;
+    margin: 0 auto;
+    background-color: rgb(0, 55, 84);
+    color: rgb(255, 255, 255);
+    border-radius: 20px;
+    font-size: 14px;
+    cursor: pointer;
+    border: none;
+    transition: transform 0.2s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.2);
+  }
+
+  .menu-button-wrapper button:active {
+    transform: scale(0.95);
+    background-color: #2c81c2;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2), 0 1px 2px rgba(0, 0, 0, 0.3);
+  }
+
+  .menu-button-dashboard:hover {
+    background-color: rgba(0, 55, 84, 0.6);
+    box-shadow: rgb(0, 55, 84) 0px 0px 0px 10px extend;
+  }
+
+}
+
+
+
+/****** Styling für Symptom-Kontainer *********/
+
+/* für die slider dropdowns - Hier verwende ich die Ursprüngliche version die lediglich ein Panel gesteuert über einen Button ist */
+
+.panel,
+.flip {
+  padding: 5px;
+  text-align: center;
+  background-color: lightseagreen;
+  border: 1px solid black;
+  color: rgb(17, 10, 10);
+  cursor: pointer;
+  font-size: 1.2rem;
+}
+
+.panel {
+  display: flex;
+  width: 100%;
+  padding: 50px;
+  display: none;
+}
+
+.button-wrapper {
+  position: relative;
+  z-index: 3;
+  display: flex;
+  justify-content: center;
+  justify-content: space-between;
+  padding-right: 5px;
+  padding-bottom: 10px;
+  ;
+}
+
+.devider {
+  padding: 10px;
+  text-align: center;
+  background-color: rgb(255, 255, 255);
+  border: 1px solid rgb(255, 255, 255);
+  color: rgb(255, 255, 255);
+
+}
+
+.panel-button7 {
+  width: 100%;
+  height: fit-content;
+  padding: 5px;
+  position: relative;
+  top: -17px;
+  text-align: center;
+  background-color: rgb(255, 255, 255);
+
+  color: rgb(0, 55, 84);
+  cursor: pointer;
+  font-weight: bold;
+  display: none;
+  border-radius: 10px;
+  border: none;
+  z-index: 1;
+  overflow-y: none;
+}
+
+.flip-button7 {
+  min-width: 120px;
+  height: 50px;
+  padding: 5px;
+  text-align: left;
+  background-color: rgb(255, 255, 255);
+  color: rgb(17, 10, 10);
+  cursor: pointer;
+  font-size: 1.2rem;
+  border-radius: 10px;
+  border: none;
+  z-index: 2;
+  border: rgb(0, 55, 84) 2px solid;
+}
+
+.flip-button7.active {
+  border: none;
+}
+
+.button-label {
+  cursor: pointer;
+  z-index: 2;
+  padding-right: 50px;
+
+}
+
+/* Styling der Dreiecke und Animation
+
+die Poligonberechnung ist von https://css-shape.com/ eine Hilfreiche seite die neben Dreiecken auch den CSS-Code für viele andere Formen zur
+verfügung stellt. Die Animation der Dreiecke ist einfach eine Rotation um 90 Grad
+
+*/
+
+.triangle {
+  --b: 5px;
+  transform: rotate(0deg);
+  height: 24px;
+  aspect-ratio: cos(30deg);
+  clip-path: polygon(0 50%, 100% 100%, 100% 0, 0 50%, var(--b) 50%, calc(100% - var(--b)/2) calc(var(--b)*cos(30deg)), calc(100% - var(--b)/2) calc(100% - var(--b)*cos(30deg)), var(--b) 50%);
+  background: rgb(0, 55, 84);
+  z-index: 1;
+  transition: transform 0.4s ease, background-color 0.4s ease;
+}
+
+/* Aktiver Zustand */
+.flip-button7.active .triangle {
+  background: rgb(0, 55, 84);
+  clip-path: polygon(100% 0, 0 50%, 100% 100%);
+  transform: rotate(-90deg);
+  /* Drehung */
+}
+
+
+
+/* Styling content Symptom */
+
+.nicht {
+  color: rgb(163, 0, 0);
+}
+
+.content-wrapper-symptom {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-rows: 1fr;
+  grid-template-areas:
+    "symptombeschreibung modifikatoren verlauf";
+  gap: 10px;
+
+}
+
+/* Styling der einzelnen Bereiche im Dropdownpanel des Sympotoms */
+.symptombeschreibung {
+
+  grid-area: symptombeschreibung;
+  border: none;
+  border-radius: 8px;
+  background-color: rgb(255, 255, 255);
+  overflow: hidden;
+}
+
+.modifikatoren {
+
+  grid-area: modifikatoren;
+  border: none;
+  border-radius: 8px;
+  background-color: #ffffff;
+  overflow: none;
+}
+
+.verlauf {
+
+  grid-area: verlauf;
+  border: none;
+  border-radius: 8px;
+  background-color: rgb(255, 255, 255);
+  overflow: none;
+}
+
+.verlauf-img {
+  width: 300px;
+  height: 150px;
+  border-radius: 20px;
+  overflow: none;
+}
+
+.symptombeschreibung,
+.modifikatoren,
+.verlauf {
+  min-width: 0;
+  max-width: 100%;
+  overflow-wrap: break-word;
+  overflow: hidden;
+}
+
+.content-wrapper-symptom {
+  font-size: 16px;
+}
+
+.content-wrapper-symptom h4 {
+  align-self: left;
+  justify-self: left;
+
+}
+
+.content-wrapper-symptom table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.content-wrapper-symptom table tr td {
+  text-align: left;
+  vertical-align: top;
+  padding: 4px;
+  font-size: 14px;
+}
+
+
+/* Responsive Anpassungen des Grids*/
+@media (max-width: 900px) {
+  .content-wrapper-symptom {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-areas:
+      "symptombeschreibung modifikatoren"
+      "verlauf .";
+  }
+}
+
+@media (max-width: 590px) {
+  .content-wrapper-symptom {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "symptombeschreibung"
+      "modifikatoren"
+      "verlauf";
+  }
+}

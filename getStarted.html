@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="SAMS-Pat - Phänotypisierungswerkzeug für die Präzisionsmedizin.">
+    <title>SAMS-Pat</title>
+    <!-- CSS-Datei einbinden -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- jQuery einbinden - Diese Bibliothek wird benötigt um den Slider zu steuern. Ich hatte recherchiert und eigentlich sollte es kein Problem
+         mit dem Backendgeben. -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>  
+    
+    
+    <!-- fontawesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/burger.css">
+    <link rel="stylesheet" href="css/inputForm.css">
+    <link rel="stylesheet" href="css/styleRadio.css">
+    <link rel="stylesheet" href="css/getStarted.css">
+</head>
+
+<body>
+    <!-- Header -->
+    <div class="sticky-wrapper">
+        <header class="header">
+            <nav class="header-nav">
+                <div class="logo-container">
+                    <img src="image/sams_pat_logo.png" alt="Company Logo" class="main-logo">
+                </div>
+
+
+
+                <div class="nav-icon-wrapper">
+                    <div class="sidebar-wrapper-test">
+                        <label class="account-menu" tabindex="0">
+                            <input class="account-checkbox" type="checkbox" />
+                            <img src="image/account_box.png" class="account-icon" alt="account-icon">
+                        </label>
+
+                        <aside class="account-sidebar">
+                            <nav class="menu-content">
+                                <ul class="menu-list">
+                                    <li class="menu-item"><a class="menu-link" href="#">Profilansicht</a></li>
+                                    <li class="menu-item"><a class="menu-link" href="#">Einstellungen</a></li>
+                                    <li class="menu-item"><a class="menu-link" href="#">Konto löschen</a></li>
+                                    <li class="menu-item"><a class="menu-link" href="#">Phenopaket Exportieren</a></li>
+                                    <li class="menu-item"><a class="menu-link" href="#">Abmelden</a></li>
+                                </ul>
+                            </nav>
+                        </aside>
+                    </div>
+
+                    <div class="sidebar-wrapper-test">
+                        <label class="hamburger-menu">
+                            <input class="hamburger-checkbox" type="checkbox" />
+                        </label>
+                        <aside class="sidebar">
+                            <nav class="menu-content">
+                                <ul class="menu-list">
+                                    <li class="menu-item"><a class="menu-link" href="#">Anmelden</a></li>
+                                    <li class="menu-item"><a class="menu-link" href="#">Registrieren</a></li>
+                                    <li class="menu-item"><a class="menu-link" href="#">Dokumentation</a></li>
+                                    <li class="menu-item"><a class="menu-link" href="#">Tutorial</a></li>
+                                    <li class="menu-item"><a class="menu-link" href="#">FAQ</a></li>
+                                    <li class="menu-item"><a class="menu-link" href="#">Impressum</a></li>
+                                </ul>
+                            </nav>
+                        </aside>
+                    </div>
+                </div>
+            </nav>
+        </header>
+    </div>
+
+    <!-- Main Inhalt -->
+    <main class="main-content">
+        <div class="get-started-container">
+            <!-- Progressbar Section -->
+
+            <!-- im folgenden Abschnitte werden die Labels und die Progressbar eingefügt. Dabei verwende ich eine für die Horizontale Ansicht 
+             und eine für die Vertikale. ab einem bestimmten breakpoint werden die Labels und die Progressbar horizontal angeordnet.
+             Da nicht nur die Kreise sondern auch die Labels horizontal angeordnet werden sollen, wird der viewport überwacht und die vertikalen 
+             Labels bei Bedarf eingeblendet oder ausgeblendet. Die Funktionen unter der getStartet.js machen aber noch einiges mehr. Sie steuert
+             die Subklasse "active" um sich beim Umstellen zum einen den aktuellen farbigen Kreis zu merken und auch die aktuelle Label zu markieren bzw.
+             anzuzeigen.-->
+
+            <!-- Labels Container für die horizontale Ansicht  -->
+            <div class="progress-section">
+                <div class="progress-container">
+                    <div class="progress" id="progress"></div>
+                    <div class="circle active"></div>
+                    <div class="circle"></div>
+                    <div class="circle"></div>
+                    <div class="circle"></div>
+                    <div class="circle"></div>
+                    <div class="circle"></div>
+                    <span class="progress-label active" for="progress">Begrüßung</span>
+                    <span class="progress-label" for="progress">Erste Schritte zur Einrichtung</span>
+                    <span class="progress-label" for="progress">Diagnoseeinstellungen</span>
+                    <span class="progress-label" for="progress">Checkliste für Symptome</span>
+                    <span class="progress-label" for="progress">Tour starten</span>
+                    <span class="progress-label" for="progress">Erstanmeldung abschließen</span>
+                </div>
+
+                <!-- Labels Container für vertikale ansicht-->
+                <div class="labels-container-vertical">
+                    <div class="vertical-circle-container">
+                        <div class="circle active"></div>
+                        <span class="progress-label-vertical active" for="progress">Begrüßung</span>
+                    </div>
+                    <div class="vertical-circle-container">
+                        <div class="circle"></div>
+                        <span class="progress-label-vertical">Erste Schritte zur Einrichtung</span>
+                    </div>
+                    <div class="vertical-circle-container">
+                        <div class="circle"></div>
+                        <span class="progress-label-vertical">Diagnoseeinstellungen</span>
+                    </div>
+                    <div class="vertical-circle-container">
+                        <div class="circle"></div>
+                        <span class="progress-label-vertical">Checkliste für Symptome</span>
+                    </div>
+                    <div class="vertical-circle-container">
+                        <div class="circle"></div>
+                        <span class="progress-label-vertical">Tour starten</span>
+                    </div>
+                    <div class="vertical-circle-container">
+                        <div class="circle"></div>
+                        <span class="progress-label-vertical">Erstanmeldung abschließen</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- End Progressbar Section -->
+
+            <!-- In der Contentsection werden die einzelnen Schritte zum jeweiligen Status der Progressbar hinzugefügt. Wenn man auf den Button "Next" klickt, 
+             wird der nächste Schritt aktiviert und der vorherige deaktiviert. Hierbei nutze ich lediglich die Subklasse "active" um den aktuellen
+             Schritt zu markieren. Eine JS funktion mit klick-Event steuert die Progressbar, die Labels und kreise und das Laden des aktuellen Steps.
+              -->
+
+
+            <!-- Content Section -->
+            <div class="content-section">
+                <div class="content step-1 active">
+                    <h2>Welcome to SAMS-Pat</h2>
+                    <p>
+                        Herzlich willkommen bei SAMS-Pat und Ihrer ersten Anmeldung. Um Ihren Anmeldeprozess zu
+                        vervollständigen, würde SAMS-Pat gerne einige Dinge im Vorfeld mit Ihnen besprechen.
+                        <br><br>
+                        Wurde bereits eine Diagnose zu Ihren Symptomen gestellt?
+                        <br><br>
+                        Wenn noch keine Diagnose gestellt wurde oder Sie diese nicht angeben möchten, kann dies
+                        jederzeit
+                        nachgetragen werden.
+                        <br><br>
+                        Haben Sie von Ihrem Arzt bereits Informationen zu Ihren Symptomen erhalten, die Sie in einer
+                        Checkliste hinterlegen möchten?
+                        <br><br>
+                        Sie haben auch die Möglichkeit, eine eigene Checkliste zu erstellen, um mehr Übersicht zu
+                        erhalten.
+                        <br><br>
+                        Des Weiteren bietet SAMS-Pat an, eine vorab Tour zu starten, um sich mit der Anwendung und ihren
+                        Möglichkeiten vertraut zu machen.
+                        <br><br>
+                        Klicken Sie unten bitte einfach auf „Weiter“, wenn wir beginnen sollen, oder klicken Sie auf
+                        „Überspringen“, wenn Sie SAMS-Pat selbst erkunden möchten.
+
+                    </p>
+                    <button class="btn" id="next-content">Next</button>
+                </div>
+
+
+
+                <!-- Schritte zur Einrichtung Step2 -->
+                <div class="content step-2">
+
+
+                    <div>
+                        <h2>Erste Schritte zur Einrichtung</h2>
+                        <p>
+                            Text welcher erklärt wie genau eine Diagnos sofern vorhanden zu finden ist - Stichwort
+                            ICD-Code auf Arztbrief oder Krankschreibung
+                        </p>
+                        <br />
+                        <div>
+                            <img src="image/diagnoseDesk.png" alt="" class="diagnose-img">
+                            <p>Beispiel wo Sie den Klassifizierungs-Code zu Ihrer Diagnose finden:</p>
+                        </div>
+                    </div>
+
+                    <button class="btn" id="next-content">Next</button>
+                </div>
+
+
+
+
+
+                <!-- In diesem Bereicht passiert nicht viel besonderes. Ein Inputfeld mit Icon und Label und eine Tabelle die die Krankheiten die man 
+                 gesucht hat anzeigt. Hier kommt aber die Akkordionfunktion die ich gefunden und hierfür angepasst habe, das erste mal zum Einsatz. 
+                 Im grunde nichts besonderes. Sie steuert nur durch das klicken auf den "action-btn details-btn" den Fade In/Out des <tr> in dem sich die
+                 Details zur Krankheit befinden sollen. Der "Auswählen" Button steuert die Auswahl der Krankheit und markiert die Zelle
+                 In dieser Variante werden keine Dummydaten angezeigt. Die Funktion erstellt nur ein Tabellenelement mit Fade-Effekt.
+                 -->
+
+                <!-- Diagnosefindung Step3 -->
+                <div class="content step-3">
+
+                    <h2>Krankheit suchen</h2>
+                    <p>Bitte geben Sie die relevanten Informationen ein, um eine Diagnose zu finden. Nutzen Sie das
+                        Suchfeld, um nach möglichen Krankheiten zu suchen.</p>
+
+                    <div class="search-container">
+                        <div class="input-wrapper">
+
+                            <div class="wrap-input">
+                                <input type="text" placeholder="Krankheit oder ICD-Code" class="input">
+                                <span class="focus-input"></span>
+                                <span class="icon-input">
+                                    <i class="fa fa-search"></i>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="search-results" class="search-results">
+
+                        <div class="devider"></div>
+
+
+                        <div class="search-results">
+                            <header class="table-header">
+                                <h2>Suchergebnisse für Krankheiten</h2>
+                            </header>
+                            <table class="searchresults-table">
+                                <thead>
+                                    <tr>
+                                        <th>Name der Krankheit</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Cardiomyopathy-cataract-hip spine disease syndrome</td>
+                                    </tr>
+                                    <tr class="search-interaction">
+                                        <td>
+                                            <button class="action-btn details-btn">
+                                                <i class="fas fa-info-circle fa-lg"></i>
+                                            </button>
+                                            <button class="action-btn select-btn">Auswählen</button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Microcephaly-cervical spine fusion anomalies syndrome</td>
+                                    </tr>
+                                    <tr class="search-interaction">
+                                        <td>
+                                            <button class="action-btn details-btn">
+                                                <i class="fas fa-info-circle fa-lg"></i>
+                                            </button>
+                                            <button class="action-btn select-btn">Auswählen</button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Non-acquired combined pituitary hormone deficiency-sensorineural hearing
+                                            loss-spine abnormalities syndrome</td>
+                                    </tr>
+                                    <tr class="search-interaction">
+                                        <td>
+                                            <button class="action-btn details-btn">
+                                                <i class="fas fa-info-circle fa-lg"></i>
+                                            </button>
+                                            <button class="action-btn select-btn">Auswählen</button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Rigid spine syndrome</td>
+                                    </tr>
+                                    <tr class="search-interaction">
+                                        <td>
+                                            <button class="action-btn details-btn">
+                                                <i class="fas fa-info-circle fa-lg"></i>
+                                            </button>
+                                            <button class="action-btn select-btn">Auswählen</button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+
+
+                        <p>Keine Suchergebnisse gefunden.</p>
+
+                    </div>
+                    <button class="btn" id="next-content">Next</button>
+                </div>
+
+
+
+
+                <!-- Checkliste Step4 -->
+                 <!-- Einfach nur html und css -->
+                <div class="content step-4">
+                    <h2>Checkliste für Symptome hochladen</h2>
+                    <p>
+                        Hier soll im Grunde ein bereits bestehendes Pheno hochgeladen werden welches
+                        vielleicht von einem Arzt:in erstellt wurde der bereits Symptome enthällt welche der Patient:in
+                        nachhalten soll.
+                    </p>
+                    <div class="checklist-container">
+                        <div class="upload-container">
+                            <div class="checklist-img-container">
+                                <img src="image/upload.png" alt="" class="checklist-img">
+                            </div>
+                            <p>
+                                Symptom-Checkliste
+                            </p>
+                        </div>
+                        <button class="upload-btn" id="upload-btn">Datei hochladen</button>
+                    </div>
+                    <button class="btn" id="next-content">Next</button>
+                </div>
+
+
+
+                <!-- Tour Step5 -->
+                <!-- hier haben wir in der jetzigen Version nur einige Card-Elemente mit nem netten hover-effekt
+                Ursprünglich hatte ich noch geplant hier auch noch den Slider über ein Modal oder einer neuen View zu gestallten. Ich wollte die Technik
+                von image-slidern und slide tutorials verbinden. Ich bin aber hier technisch in eine Sackgasse geraten und habe mich mehr auf wichtigere
+                dinge Konzentriert. Mehr dazu in der Dokumentation.
+                -->
+
+                <div class="content step-5">
+                    <h2>Tour starten</h2>
+                    <p>
+                        Startet eine Slidetour welche die wichtigsten Funktionen
+                        von SAMS-Pat beschreibt. Klicken Sie einfach auf eine der unten
+                        angezeigten Kacheln. Eine Zusammengefasste Dokumentation können Sie jederzeit aufrufen.
+
+                    </p>
+                    <div class="tour-container">
+                        <div class="card">
+                            <div class="card-header">Wofür Steht SAMS-Pat?</div>
+                        </div>
+                        <div class="card">
+                            <div class="card-header">Was kann SAMS-Pat für mich leisten?</div>
+                        </div>
+                        <div class="card">
+                            <div class="card-header">Wie nutze ich SAMS-Pat?</div>
+                        </div>
+                        <div class="card">
+                            <div class="card-header">Wie erstelle ich einen Eintrag?</div>
+                        </div>
+                        <div class="card">
+                            <div class="card-header">Was beinhaltet ein Eintrag?</div>
+                        </div>
+                        <div class="card">
+                            <div class="card-header">Wie kann ich meine Einträge Verwalten?</div>
+                        </div>
+                        <div class="card">
+                            <div class="card-header">Wie werden meine Daten verarbeitet?</div>
+                        </div>
+                        <div class="card"></div>
+                        <div class="card"></div>
+                        <div class="card"></div>
+                        <div class="card"></div>
+                        <div class="card"></div>
+
+
+                        <button class="btn" id="next-content">Next</button>
+                    </div>
+                </div>
+                <div class="content step-6">
+                    <h2>Fertig stellen</h2>
+                    <p>
+                        Vielen Dank für Ihre Geduld und noch viel Erfolg mit SAMS-Pat
+                    </p>
+                    <button class="btn" id="next-content">Anmmeldung abschließen</button>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-column">
+                <nav class="footer-nav">
+                    <a href="#" class="footer-link" tabindex="0">Registrieren</a>
+                    <a href="#" class="footer-link" tabindex="0">Dokumentation</a>
+                    <a href="#" class="footer-link" tabindex="0">Vorschau / Tutorial</a>
+                    <a href="#" class="footer-link" tabindex="0">FAQ</a>
+                    <a href="#" class="footer-link" tabindex="0">Impressum Disclaimer</a>
+                </nav>
+            </div>
+            <div class="footer-column">
+                <div class="footer-logos">
+
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="script/getStarted.js"></script>
+    <script src="script/script.js"></script>
+</body>
+
+</html>

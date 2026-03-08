@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="SAMS-Pat - Phänotypisierungswerkzeug für die Präzisionsmedizin.">
+  <title>SAMS-Pat</title>
+  <!-- CSS-Datei einbinden -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <!-- fontawesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/burger.css">
+  <link rel="stylesheet" href="css/inputForm.css">
+  <link rel="stylesheet" href="css/styleRadio.css">
+
+</head>
+
+<header class="header">
+  <nav class="header-nav">
+    <div class="logo-container">
+      <img src="image/sams_pat_logo.png" alt="Company Logo" class="main-logo">
+    </div>
+
+    <div class="nav-icon-wrapper">
+      <div class="sidebar-wrapper-test">
+          <label class="account-menu" tabindex="0">
+              <input class="account-checkbox" type="checkbox" />
+              <img src="image/account_box.png" class="account-icon" alt="account-icon">
+          </label>
+
+          <aside class="account-sidebar">
+              <nav class="menu-content">
+                  <ul class="menu-list">
+                      <li class="menu-item"><a class="menu-link" href="#">Profilansicht</a></li>
+                      <li class="menu-item"><a class="menu-link" href="#">Einstellungen</a></li>
+                      <li class="menu-item"><a class="menu-link" href="#">Konto löschen</a></li>
+                      <li class="menu-item"><a class="menu-link" href="#">Phenopaket Exportieren</a></li>
+                      <li class="menu-item"><a class="menu-link" href="#">Abmelden</a></li>
+                  </ul>
+              </nav>
+          </aside>
+      </div>
+
+      <div class="sidebar-wrapper-test">
+          <label class="hamburger-menu">
+              <input class="hamburger-checkbox" type="checkbox" />
+          </label>
+          <aside class="sidebar">
+              <nav class="menu-content">
+                  <ul class="menu-list">
+                      <li class="menu-item"><a class="menu-link" href="#">Anmelden</a></li>
+                      <li class="menu-item"><a class="menu-link" href="#">Registrieren</a></li>
+                      <li class="menu-item"><a class="menu-link" href="#">Dokumentation</a></li>
+                      <li class="menu-item"><a class="menu-link" href="#">Tutorial</a></li>
+                      <li class="menu-item"><a class="menu-link" href="#">FAQ</a></li>
+                      <li class="menu-item"><a class="menu-link" href="#">Impressum</a></li>
+                  </ul>
+              </nav>
+          </aside>
+      </div>
+  </div>
+  </nav>
+</header>
+
+
+<body>
+  <main class="main-content">
+    <div class="register-container">
+      <h1 class="register-title">Registrieren</h1>
+      <p class="register-subtitle">Erstellen Sie sich ein Konto.</p>
+      <form class="register-form">
+        <!-- Benutzername -->
+
+        <div class="wrap-input">
+          <input type="email" placeholder="Benutzername / E-Mail" class="input">
+          <span class="focus-input"></span>
+          <span class="icon-input">
+            <i class="fa fa-user"></i>
+          </span>
+        </div>
+
+
+        <!-- Geschlecht -->
+        <div class="form-box">
+          <label>
+            <input type="radio" name="kk">
+            <div class="circle"></div>
+            <span>männlich</span>
+          </label>
+          <label>
+            <input type="radio" name="kk">
+            <div class="circle"></div>
+            <span>weiblich</span>
+          </label>
+          <label>
+            <input type="radio" name="kk">
+            <div class="circle"></div>
+            <span>keine Angaben</span>
+          </label>
+        </div>
+
+        <!-- Eltern Checkbox -->
+        <div class="wrapper-checkbox-register">
+          <input type="checkbox" id="check" class="custom-checkbox-register">
+          <label for="check" class="label-checkbox-register">Meine Eltern sind verwandt (z.B. Cousins)</label>
+        </div>
+
+        <!-- Passwort -->
+
+        <div class="wrap-input">
+          <input type="password" placeholder="Passwort" class="input">
+          <span class="focus-input"></span>
+          <span class="icon-input">
+            <i class="fa fa-lock"></i>
+          </span>
+        </div>
+
+
+        <!-- Passwort wiederholen -->
+
+        <div class="wrap-input">
+          <input type="password" placeholder="Passwort wiederholen" class="input">
+          <span class="focus-input"></span>
+          <span class="icon-input">
+            <i class="fa fa-lock"></i>
+          </span>
+        </div>
+
+
+        <!-- Fehlermeldung -->
+        <p class="error-message">Passwörter stimmen nicht überein</p>
+
+        <!-- Buttons -->
+        <div class="button-group-index">
+          <button type="button" class="btn btn-primary">Anmelden</button>
+          <button type="submit" class="btn btn-primary">Konto erstellen</button>
+        </div>
+      </form>
+    </div>
+  </main>
+</body>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="footer-content">
+    <div class="footer-column">
+      <nav class="footer-nav">
+        <a href="#" class="footer-link" tabindex="0">Registrieren</a>
+        <a href="#" class="footer-link" tabindex="0">Dokumentation</a>
+        <a href="#" class="footer-link" tabindex="0">Vorschau / Tutorial</a>
+        <a href="#" class="footer-link" tabindex="0">FAQ</a>
+        <a href="#" class="footer-link" tabindex="0">Impressum Disclaimer</a>
+      </nav>
+    </div>
+    <div class="footer-column">
+      <div class="footer-logos">
+        
+      </div>
+    </div>
+  </div>
+</footer>
+
+</html>
